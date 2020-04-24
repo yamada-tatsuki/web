@@ -8,9 +8,9 @@ import java.io.Serializable;
  * @author mano
  *
  */
-public class Hobby implements Serializable {
+public class Bushohenshu implements Serializable {
 
-	public Hobby() {
+	public Bushohenshu() {
 		// 何もしない
 	}
 

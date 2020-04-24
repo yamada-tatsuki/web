@@ -5,7 +5,7 @@
 /* 全タグへ適用 */
 * {
 	/* 外部余白 */
-	margin: 0;
+	margin: 5px;
 	/* 内部余白 */
 	padding: 0;
 	/* フォント */
@@ -293,11 +293,11 @@ input[type="button"] {
 	/* 内部余白 */
 	padding: 3px;
 	/* 枠線 */
-	border: 2px solid #CCC;
+	border: 1px solid #CCC;
 	/* 文字色 */
 	color: #111;
 	/* 背景色 */
-	background: #EEE;
+	background: #000;
 }
 
 /****** テーブル */
@@ -308,20 +308,24 @@ table {
 }
 
 table th {
+	border-collapse: collapse;
+	border-right: 1px solid #999;
 	/* 内部余白 */
 	padding: 10px;
 	/* 枠線 */
 	border-top: 1px solid #fff;
 	/* 文字色 */
-	color: #fff;
+	color: #000;
 	/* 文字表示 */
 	text-align: left;
 	vertical-align: top;
 	/* 背景色 */
-	background-color: #555;
+	background-color: blue;
 }
 
 table td {
+	border-collapse: collapse;
+	border-right: 1px solid #999;
 	/* 内部余白 */
 	padding: 6px;
 	/* 枠線 */

@@ -4,6 +4,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
         <property name="java-output-path" value="/wt2/build/classes"/>
-        <property name="context-root" value="wt2"/>
+        <property name="context-root" value="Syain"/>
     </wb-module>
 </project-modules>

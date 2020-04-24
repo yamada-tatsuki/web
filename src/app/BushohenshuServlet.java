@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/api/hobby")
-public class HobbyServlet extends HttpServlet {
+@WebServlet("/api/bushohenshu")//このページのURLをここで決める
+public class BushohenshuServlet extends HttpServlet {
 
 	/********************************************************************************
 	 * 以下のdoGet/doPostを実装して下さい。
@@ -27,8 +27,19 @@ public class HobbyServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException , IOException{
+		//dogetはここに書く、dogetとdopostはセットで必須でかく　その中に書かれたことを実行する
 		// TODO 必須機能「趣味参照機能」
-		String syainid = request.getParameter("syainid");
+		String syainid = request.getParameter("syainid");//URLで何を受け取るか決める
+
+		try {
+
+		    // JDBCドライバのロード
+		    Class.forName("oracle.jdbc.driver.OracleDriver");
+
+		} catch (ClassNotFoundException e) {
+		    // ドライバが設定されていない場合はエラーになります
+		    throw new RuntimeException(String.format("JDBCドライバのロードに失敗しました。詳細:[%s]", e.getMessage()), e);
+		}
 
 
 		String url = "jdbc:oracle:thin:@localhost:1521:XE";
@@ -43,6 +54,7 @@ public class HobbyServlet extends HttpServlet {
 				Statement stmt = con.createStatement();
 
 				// SQLの命令文を実行し、その結果をResultSet型のrsに代入します
+
 				ResultSet rs1 = stmt.executeQuery(
 				"select  \n" +
 				"msh.SYAINID, \n" +
@@ -60,15 +72,13 @@ public class HobbyServlet extends HttpServlet {
 				"and SYANID = '"+ syainid + "' \n "+
 				"and msh.HOBBY_ID = mh.HOBBY_ID \n" +
 				"and mh.CATEGORY_ID = mc.CATEGORY_ID \n"
-				);
+				);){
 
-		List<Hobby>hobbyList = new ArrayList<>();
+		List<Bushohenshu>hobbyList = new ArrayList<>();//とりあえずListでかく　全部のデータ　表示隊
 
-			// SQL実行結果を保持している変数rsから商品情報を取得
-			// rs.nextは取得した商品情報表に次の行があるとき、trueになります
-			// 次の行がないときはfalseになります
-			while(rs1.next()) {
-				Hobby hobby = new Hobby();
+
+			while(rs1.next()) { //とりあえずwhileでかく
+				Bushohenshu hobby = new Bushohenshu(); //1行分のデータ
 
 				hobby.setHobby(rs1.getString("mh.HOBBY_NAME")); // Item型の変数itemに商品コードをセット
 				hobby.setHobbyCategory(rs1.getString("mc.CATEGORY_NAME"));// Item型の変数itemに商品名をセット
@@ -76,22 +86,13 @@ public class HobbyServlet extends HttpServlet {
 				hobbyList.add(hobby);
 			}
 
-			// アクセスした人に応答するためのJSONを用意する
+			//何を返すのか アクセスした人に応答するためのJSONを用意する
 			PrintWriter pw = response.getWriter();
-
-			// JSONで出力する
 			pw.append(new ObjectMapper().writeValueAsString(hobbyList));
 
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
 		}
-
-
-
-
-
-
-
 	}
 		// -- ここまで --
 

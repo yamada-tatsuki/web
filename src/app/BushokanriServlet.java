@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/api/employees")
-public class EmployeeServlet extends HttpServlet {
+@WebServlet("/api/bushokanri")
+public class BushokanriServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -27,57 +29,50 @@ public class EmployeeServlet extends HttpServlet {
 		// ※SQLのログを出力するため変数urlの値は基本的な形式から少し変更を加えています。
 		// 　そのためシステム構築2で使い回すときは注意下さい！
 		String url = "jdbc:log4jdbc:oracle:thin:@localhost:1521:XE";
-		String user = "wt2";
-		String pass = "wt2";
+		String user = "app";
+		String pass = "app";
 
 		// エラーが発生するかもしれない処理はtry-catchで囲みます
 		// この場合はDBサーバへの接続に失敗する可能性があります
 		try (
 				// データベースへ接続します
-				Connection con = DriverManager.getConnection(url, user, pass);
+				Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "app", "app");
 
 				// SQLの命令文を実行するための準備をおこないます
 				Statement stmt = con.createStatement();
 
 				// SQLの命令文を実行し、その結果をResultSet型のrsに代入します
 				ResultSet rs1 = stmt.executeQuery(
-						"SELECT syainname, " +
-								"	syusinttdfkn, " +
-								"	imagefilename, " +
-								"	tanjyoymd, "+
-								"	daigakuname, " +
-								"	senkokamoku, " +
-								"	syutokusikaku, " +
-								"	nyusyaymd, " +
-								"	freecomment " +
-								"FROM ms_syain " +
-								"WHERE syainid = '" + id + "'");) {
+						"select  \n" +
+								"BUSHO_ID \n" +
+								",BUSHO_NAME \n" +
+								" \n" +
+								"from  \n" +
+								"TR_SYAIN , \n" +
+								"TR_BUSHO  \n" +
+								" \n" +
+								"where 1=1 \n" +
+								"and BUSHO_ID = BUSHO_ID \n" +
+								"order by \n" +
+								"BUSHO_ID \n");
+				){
 
-			// 社員情報を保持するため、Employee型の変数empを宣言
-			// 変数empはJSPに渡すための社員情報を保持させます
-			Employee emp = new Employee();
+			List<Bushokanri> list = new ArrayList<>();
 
-			// SQL実行結果を保持している変数rsから社員情報を取得
-			// rs.nextは取得した社員情報表に次の行があるとき、trueになります
-			// 次の行がないときはfalseになります
-			if (rs1.next()) {
-				emp.setId(id); // 社員IDを変数empに代入
-				emp.setName(rs1.getString("syainname"));// SQL実行結果のsyainname列の値を取得し変数empに代入します
-				emp.setAddress(rs1.getString("syusinttdfkn")); // SQL実行結果の「syusinttdfkn」列の値を取得し変数empに代入します
-				emp.setImage(rs1.getString("imagefilename")); // SQL実行結果の「imagefilename」列の値を取得し変数empに代入します
-				emp.setBirthYmd(rs1.getString("tanjyoymd")); // 以下、同様なので以下省略します
-				emp.setCollege(rs1.getString("daigakuname"));
-				emp.setMajor(rs1.getString("senkokamoku"));
-				emp.setLicense(rs1.getString("syutokusikaku"));
-				emp.setEnterYmd(rs1.getString("nyusyaymd"));
-				emp.setComment(rs1.getString("freecomment"));
+			while (rs1.next()) {
+				Bushokanri busho = new Bushokanri();
+
+				busho.setBushoId(rs1.getString("BUSHO_ID"));
+				busho.setBushoName(rs1.getString("BUSHO_NAME"));
+
+				list.add(busho);
 			}
 
 			// アクセスした人に応答するためのJSONを用意する
 			PrintWriter pw = response.getWriter();
 
 			// JSONで出力する
-			pw.append(new ObjectMapper().writeValueAsString(emp));
+			pw.append(new ObjectMapper().writeValueAsString(list));
 
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);

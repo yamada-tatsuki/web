@@ -10,34 +10,33 @@ function executeAjax () {
 
 	// --------------- TODO 編集ここから---------------
 	var requestQuery = { syainid  : parameter};
-	console.log(requestQuery);
+	//console.log(requestQuery);
 
 	$.ajax({
 		type : 'GET',
-		url : '/wt2/api/hobby',
+		url : '/Syain/api/bushohenshu',
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
 
 					// サーバーと䛾通信に成功した時䛾処理
 					// 確認䛾ために返却値を出力
-					console.log('返却値', json);
+					console.log(json);
 					// 取得したデータを画面に表示する
 					// HTML䛾内容を文字列結合で生成する。
-					var tableElemnt = '';
+					var tableElemnt = '<table>';
 					for (var i=0; i < json.length; i++) {
-					var hobby = json[i];
 					tableElemnt += '<tr> '
-					//'<td>' + (i+1)+ ' </td>'+
 					+'<td>' + hobby.hobbyCategory + '</td>'
 					+'<td>' + hobby.hobby +'</td>'
-					+ '</tr>';
+					+ '</tr>'
+					+'</table>';
 
 					}
 					// HTMLに挿入
 					$('#hobby').html(tableElemnt);
-					},
-					error : function(XMLHttpRequest, textStatus, errorThrown) {
+
+					},error : function(XMLHttpRequest, textStatus, errorThrown) { //successとセット
 					// サーバーと䛾通信に失敗した時䛾処理
 					alert('データ䛾通信に失敗しました');
 					console.log(errorThrown)

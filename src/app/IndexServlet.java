@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("employee.html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("bushokanri.html");
 		dispatcher.forward(request, response);
 	}
 
