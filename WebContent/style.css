@@ -309,18 +309,18 @@ table {
 
 table th {
 	border-collapse: collapse;
-	border-right: 1px solid #999;
+	border: 1px solid #999;
 	/* 内部余白 */
 	padding: 10px;
 	/* 枠線 */
-	border-top: 1px solid #fff;
+	border-top: 1px solid #999;
 	/* 文字色 */
 	color: #000;
 	/* 文字表示 */
 	text-align: left;
 	vertical-align: top;
 	/* 背景色 */
-	background-color: blue;
+	background-color:#01A9DB;
 }
 
 table td {

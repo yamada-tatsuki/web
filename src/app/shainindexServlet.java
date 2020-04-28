@@ -17,17 +17,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/api/bushokanri")
-public class BushokanriServlet extends HttpServlet {
+@WebServlet("/api/shainindex")
+public class shainindexServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// アクセス元のHTMLでｑに設定された値を取得して、String型の変数idに代入
-		String q = request.getParameter("q");
+		String s = request.getParameter("s");
 
-		String sql = " select " + " BUSHO_ID , " +" BUSHO_NAME " + " from " + " TR_BUSHO ";
+		String sql = "select  \n" +
+				"SYAIN_NO, \n" +
+				"SYAIN_NAME \n" +
+				"from TR_SYAIN \n" ;
+			//	" select " + " BUSHO_ID , " +" BUSHO_NAME " + " from " + " TR_BUSHO ";
 
-		List<Bushokanri> list = new ArrayList<>();
+		List<shainindex> list = new ArrayList<>();
 
 		// エラーが発生するかもしれない処理はtry-catchで囲みます
 		// この場合はDBサーバへの接続に失敗する可能性があります
@@ -43,12 +47,12 @@ public class BushokanriServlet extends HttpServlet {
 
 
 			while (rs1.next()) {
-				Bushokanri busho = new Bushokanri();
+				shainindex shain = new shainindex();
 
-				busho.setBushoId(rs1.getString("BUSHO_ID"));
-				busho.setBushoName(rs1.getString("BUSHO_NAME"));
+				shain.setshainId(rs1.getString("SYAIN_NO"));
+				shain.setshainName(rs1.getString("SYAIN_NAME"));
 
-				list.add(busho);
+				list.add(shain);
 			}
 
 			// アクセスした人に応答するためのJSONを用意する

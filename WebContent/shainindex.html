@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -6,20 +7,22 @@
 <link rel="stylesheet" type="text/css" href="style.css" />
 <!-- JavaScriptの読み込み -->
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
-<script type="text/javascript" src="bushokanri.js"></script>
-<title>部署データベース管理ページ</title>
+<script type="text/javascript" src="shainindex.js"></script>
+<title>社員データベース管理ページ</title>
 </head>
 <body>
-<h1>部署一覧：</h1>
+<h1>社員一覧：</h1>
 
 <table id ="table_data">
 	<tr>
-		<th>部署ID</th>
-		<th>部署名</th>
+		<th>社員ID</th>
+		<th>名前</th>
 	</tr>
 </table>
 
-<button onclick="location.href='./bushohenshu.html'">新規追加</button>
+<button onclick="location.href='./shainhenshu.html'">新規追加</button>
+<p>
+<button onclick="location.href='./shainkensaku.html'">検索</button>
 
 </body>
 </html>

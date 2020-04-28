@@ -38,7 +38,7 @@ function executeAjax () {
 
 					},error : function(XMLHttpRequest, textStatus, errorThrown) { //successとセット
 					// サーバーと䛾通信に失敗した時䛾処理
-					alert('データ䛾通信に失敗しました');
+					//alert('データ䛾通信に失敗しました');
 					console.log(errorThrown)
 					}
 					});

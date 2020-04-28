@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!-- CSSの読み込み -->
+<link rel="stylesheet" type="text/css" href="style.css" />
+<!-- JavaScriptの読み込み -->
+<script type="text/javascript" src="jquery-1.10.2.js"></script>
+<script type="text/javascript" src="shainindex.js"></script>
+<title>社員データベース検索ページ</title>
+</head>
+<body>
+<h1>条件を指定して社員情報を検索します。</h1>
+
+<div>
+<table id = "pulldown">
+	所属部署：<select name=”busho”>
+	<option value=”dec”>未指定</option>
+	</select>
+	</table>
+	<p>社員ID：<input type="text"  id="js-login-id" class="login-id"></input>
+	<p>名前に含む文字：<input type="text"  id="js-login-id" class="login-id"></input>
+	<p>
+	<button onclick="location.href='./shainkensaku.html'">検索</button>
+	</p>
+</div>
+
+</body>
+</html>

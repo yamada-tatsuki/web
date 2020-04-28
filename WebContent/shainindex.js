@@ -6,56 +6,57 @@ function executeAjax () {
 	parameter = decodeURIComponent( parameter );
 	parameter = parameter.split('=')[1];
 
-	var requestQuery = { q : parameter} ;
+	var requestQuery = { s : parameter} ;
 	console.dir(requestQuery);
 	$.ajax({
 		type : 'GET',
-		url : '/Syain/api/bushokanri',
+		url : '/Syain/api/shainindex',
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
+			console.log(json);
 
-			//var syainName = json[0].syainName;
-			//document.getElementById("title_name").innerHTML = syainName + "さんの趣味一覧です！";
 
 			for (var i = 0; i < json.length; i++) {
 
 				var element = json[i];
 
 				var record = '<tr>'
-					+ '<td>' + element.bushoId + '</td>'
-					+ '<td>' + element.bushoName + '</td>'
+					+ '<td>' + element.shainId + '</td>'
+					+ '<td>' + element.shainName + '</td>'
 					+ '<td>' + '<button class=edit name= "edit" >編集</button>' + '</td>'
-					+ '<td>' + '<button class=delete type="submit" name="delete" value="'+ element.bushoId +'">削除</button>' + '</td>'
+					+ '<td>' + '<button class=deletebusho type="submit" >削除</button>' + '</td>'
 					+ '</tr>';
 
 				$('#table_data').append(record)
 			}
-			$('.delete').click(deletebusho);
+			//$('.delete').click('road',deletebusho);
+		//	console.log(json[i]);
 		}
 	});
 }
 
 
-var deletebusho = function(){
+/*var deletebusho = function(){
 	var inputbushoId = document.activeElement.value;
-	var requestQuery = { d : inputbushoId} ;
+	var restQqueuery = { delete1 : inputbushoId} ;
 	console.log(requestQuery);
-
+}
 $.ajax({
 	type : 'POST',
-	url : '/Syain/api/deletebushokanri',
+	url : '/Syain/deletebushokanri',
 	dataType : 'json',
+	//data :requestQuery,
 	success : function (json) {
-		console.log('返却地',json);
+		console.log(json);
 	},
 	error:function(XMLHttpRequest, textStatus, errorThrown){
 		// サーバーとの通信に失敗した時の処理
-		alert('サーバーとの通信ができませんでした');
+		alert('削除することができませんでした');
 		console.log(errorThrown);
 	}
-})
-}
+});*/
+
 
 $(document).ready(function () {
 	'use strict';

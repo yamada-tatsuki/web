@@ -42,10 +42,6 @@ public class BushohenshuServlet extends HttpServlet {
 		}
 
 
-		String url = "jdbc:oracle:thin:@localhost:1521:XE";
-		String user = "wt2";
-		String pass = "wt2";
-
 		try (
 				// データベースへ接続します
 				Connection con = DriverManager.getConnection("jdbc:log4jdbc:oracle:thin:@localhost:1521:XE","wt2","wt2");
