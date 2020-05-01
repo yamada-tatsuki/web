@@ -15,7 +15,6 @@
 		<h1>社員データを新規作成します</h1>
 </div>
 
-
     <div>
    		社員番号：<input type="text"  placeholder="例：EMP1234" id="js-add-shainid"></input>
    		<p><p>
@@ -23,13 +22,14 @@
 		<p><p>
 		年齢：<input type="text"  placeholder="例：30" id="js-add-shainold"></input>
 		<p><p>
-		性別：<input type="text"  placeholder="例：" id="js-add-shainsex"></input>
+		性別：<label><input type="radio" name="sex" value="m"id="js-add-shainsex">男性</label>
+		<label><input type="radio" name="sex" value="w"id="js-add-shainsex">女性</label>
 		<p><p>
 		写真ID：<input type="text"  placeholder="例：P12345" id="js-add-shasinid"></input>
 		<p><p>
 		住所：<input type="text"  placeholder="例：〒123-4567 東京都港区" id="js-add-jyusho"></input>
 		<p><p>
-		部署ID：<input type="text"  placeholder="例：名前　太郎" id="js-add-bushoid"></input>
+		部署ID：<input type="text"  placeholder="例：D01" id="js-add-bushoid"></input>
 
 		<p><button id="js-settei-button" onclick="location.href='./shainkekka.html'">設定</button></p>
 

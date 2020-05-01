@@ -22,43 +22,24 @@ function executeAjax () {
 				var record = '<tr>'
 					+ '<td>' + element.bushoId + '</td>'
 					+ '<td>' + element.bushoName + '</td>'
-					+ '<td>' + '<button class=edit type="submit" name= "edit" value="'+ element.bushoId +'" >編集</button>' + '</td>'
+					+ '<td>' + '<button class=edit type="submit" name= "edit" onclick="editbusho(\''+element.bushoId+'\')">編集</button>' + '</td>'
 					+ '<td>' + '<button class=delete type="submit" name="delete" value="'+ element.bushoId +'" button onclick="func1()">削除</button>' + '</td>'
 					+ '</tr>';
 
 				$('#table_data').append(record)
 			}
-			$('.edit').click(editbusho);
+			//$('.edit').click(editbusho);
 			$('.delete').click(deletebusho);
 		}
 	});
 }
 
-var editbusho = function(){
-	var inputbushoname = $('#js-settei-busho').val();
-	var inputbushoId = document.activeElement.value;
-	var requestQuery = {
-			NewbushoName : inputbushoname,
-			bushoId : inputbushoId
-	} ;
-	console.log(requestQuery);
+var editbusho = function(bushoId){
+	location.href='./bushoedit.html?bushoId=' +bushoId
+	console.log(bushoId);
 
-$.ajax({
-	type : 'POST',
-	url : '/Syain/api/editbushokanri',
-	dataType : 'json',
-	data : requestQuery,
-	success : function (json) {
-		console.log('返却地',json);
-	},
-	error:function(XMLHttpRequest, textStatus, errorThrown){
-		// サーバーとの通信に失敗した時の処理
-		alert('設定することができませんでした。');
-		console.log(errorThrown);
-	}
-})
+	$('#bushoid').append(bushoId)
 }
-
 
 function func1() {
     document.location.reload();

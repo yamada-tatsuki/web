@@ -14,12 +14,17 @@
 <div>
 		<h1>部署データを編集します</h1>
 </div>
-
+<table id ="bushoid">
+	<tr>
+		<th>部署ID</th>
+		<th>部署名</th>
+	</tr>
+</table>
 
     <div>
-		新たな部署名：<input type="text" placeholder="部署を入力" id="js-settei-busho" ></input>
+		新たな部署名：<input type="text" placeholder="部署を入力" id="js-settei-bushoname" ></input>
 
-		<p><button id="js-settei-button" >設定</button></p>
+		<p><button id="js-bushosettei-button"  onclick="location.href='./bushokekka.html'">設定</button></p>
 
 		<button id="js-cancel-button" class="cansel-button" onclick="location.href='./bushokanri.html'">キャンセル</button>
 	</div>
