@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!-- CSSの読み込み -->
+<link rel="stylesheet" type="text/css" href="style.css" />
+<!-- JavaScriptの読み込み -->
+<script type="text/javascript" src="jquery-1.10.2.js"></script>
+<script type="text/javascript" src="bushoadd.js"></script>
+<title>部署の新規作成ページ</title>
+</head>
+<body>
+<!-- TODO ここから必要なHTML/CSS/JavaScriptのコードを書いて下さい -->
+<div>
+		<h1>部署データを新規作成します</h1>
+</div>
+
+
+    <div>
+   		部署ID：<input type="text"  placeholder="部署IDを入力" id="js-add-bushoid"></input>
+		部署名：<input type="text"  placeholder="部署名を入力" id="js-add-bushoname"></input>
+
+		<p><button id="js-settei-button" onclick="location.href='./bushokekka.html'">設定</button></p>
+
+		<button id="js-cancel-button" class="cansel-button" onclick="location.href='./bushokanri.html'">キャンセル</button>
+	</div>
+
+<!-- ここまで -->
+</body>
+</html>

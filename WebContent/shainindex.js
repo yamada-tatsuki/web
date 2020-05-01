@@ -25,37 +25,40 @@ function executeAjax () {
 					+ '<td>' + element.shainId + '</td>'
 					+ '<td>' + element.shainName + '</td>'
 					+ '<td>' + '<button class=edit name= "edit" >編集</button>' + '</td>'
-					+ '<td>' + '<button class=deletebusho type="submit" >削除</button>' + '</td>'
+					+ '<td>' + '<button class=delete type="submit" name="delete" value="'+ element.shainId +'" button onclick="func1()" >削除</button>' + '</td>'
 					+ '</tr>';
 
 				$('#table_data').append(record)
 			}
-			//$('.delete').click('road',deletebusho);
-		//	console.log(json[i]);
+			$('.delete').click(deleteshain);
 		}
 	});
 }
 
+function func1() {
+    document.location.reload();
+  }
 
-/*var deletebusho = function(){
-	var inputbushoId = document.activeElement.value;
-	var restQqueuery = { delete1 : inputbushoId} ;
+var deleteshain = function(){
+	var inputshainId = document.activeElement.value;
+	var  requestQuery = { shaindelete : inputshainId} ;
 	console.log(requestQuery);
-}
+
 $.ajax({
 	type : 'POST',
-	url : '/Syain/deletebushokanri',
+	url : '/Syain/api/deleteshainkanri',
 	dataType : 'json',
-	//data :requestQuery,
+	data : requestQuery,
 	success : function (json) {
-		console.log(json);
+		console.log('返却地',json);
 	},
 	error:function(XMLHttpRequest, textStatus, errorThrown){
 		// サーバーとの通信に失敗した時の処理
 		alert('削除することができませんでした');
 		console.log(errorThrown);
 	}
-});*/
+})
+}
 
 
 $(document).ready(function () {
@@ -65,5 +68,4 @@ $(document).ready(function () {
 	executeAjax();
 
 	$('#table_data').ready('road',executeAjax);
-
 });

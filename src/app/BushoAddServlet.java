@@ -14,19 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/api/deletebushokanri")
-public class DeleteBushokanriServlet extends HttpServlet {
+@WebServlet("/api/addbushokanri")
+public class BushoAddServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// アクセス元のHTMLでｑに設定された値を取得して、String型の変数idに代入
-		String d = request.getParameter("d");
+		String bushoId = request.getParameter("bushoId");
+		String NewbushoName = request.getParameter("NewbushoName");
 
 		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "app";
 		String pass = "app";
 
-		String sql = " delete from TR_BUSHO " + " where 1=1 " + " and BUSHO_ID = '" + d + "'  \n " ;
+		String sql = "insert into TR_BUSHO " + "(BUSHO_ID, BUSHO_NAME) " +"values \n" + "('"+bushoId+"','"+NewbushoName+"') ";
+
 
 		System.out.println(sql);
 
@@ -49,7 +51,7 @@ public class DeleteBushokanriServlet extends HttpServlet {
 			PrintWriter pw = response.getWriter();
 
 			// JSONで出力する
-			pw.append(new ObjectMapper().writeValueAsString("削除しました"));
+			pw.append(new ObjectMapper().writeValueAsString("設定しました"));
 
 	}
 	@Override
