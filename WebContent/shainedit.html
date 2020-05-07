@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<!-- CSSの読み込み -->
+<link rel="stylesheet" type="text/css" href="style.css" />
+<!-- JavaScriptの読み込み -->
+<script type="text/javascript" src="jquery-1.10.2.js"></script>
+<script type="text/javascript" src="shainedit.js"></script>
+<title>社員の新規作成ページ</title>
+</head>
+<body>
+<!-- TODO ここから必要なHTML/CSS/JavaScriptのコードを書いて下さい -->
+<div>
+		<h1>社員データを編集します</h1>
+</div>
+
+    <div>
+   		<p><p>
+		名前：<input type="text"  placeholder="例：名前　太郎" id="js-add-shainname"></input>
+		<p><p>
+		年齢：<input type="text"  placeholder="例：30" id="js-add-shainold"></input>
+		<p><p>
+		性別：<label><input type="radio" name="sex" value="m"id="js-add-shainsex">男性</label>
+		<label><input type="radio" name="sex" value="w"id="js-add-shainsex">女性</label>
+		<p><p>
+		写真ID：<input type="text"  placeholder="例：P12345" id="js-add-shasinid"></input>
+		<p><p>
+		住所：<input type="text"  placeholder="例：〒123-4567 東京都港区" id="js-add-jyusho"></input>
+		<p><p>
+		部署ID：<input type="text"  placeholder="例：D01" id="js-add-bushoid"></input>
+
+		<p><button id="js-settei-button" onclick="location.href='./shainkekka.html'">設定</button></p>
+
+		<button id="js-cancel-button" class="cansel-button" onclick="location.href='./shainindex.html'">キャンセル</button>
+	</div>
+
+<!-- ここまで -->
+</body>
+</html>

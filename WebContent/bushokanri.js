@@ -22,23 +22,25 @@ function executeAjax () {
 				var record = '<tr>'
 					+ '<td>' + element.bushoId + '</td>'
 					+ '<td>' + element.bushoName + '</td>'
-					+ '<td>' + '<button class=edit type="submit" name= "edit" onclick="editbusho(\''+element.bushoId+'\')">編集</button>' + '</td>'
+					+ '<td>' + '<button class=edit type="submit" name= "edit" value="'+ element.bushoId +'" >編集</button>' + '</td>'
 					+ '<td>' + '<button class=delete type="submit" name="delete" value="'+ element.bushoId +'" button onclick="func1()">削除</button>' + '</td>'
 					+ '</tr>';
 
 				$('#table_data').append(record)
 			}
-			//$('.edit').click(editbusho);
 			$('.delete').click(deletebusho);
+
+			$('.edit').click(editbusho);
 		}
 	});
 }
 
-var editbusho = function(bushoId){
-	location.href='./bushoedit.html?bushoId=' +bushoId
+var editbusho = function(){
+
+	var bushoId = document.activeElement.value;
+	location.href='./bushoedit.html?bushoId=' +bushoId;
 	console.log(bushoId);
 
-	$('#bushoid').append(bushoId)
 }
 
 function func1() {

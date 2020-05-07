@@ -12,11 +12,17 @@
 	var requestQuery = { syainid  : parameter};*/
 
 var edit = function(){
+
+	var parameter = location.search.substring(1, location.search.length);
+	parameter = decodeURIComponent(parameter);
+	parameter = parameter.split('=')[1];
+
+
 	var inputbushoname = $('#js-settei-bushoname').val();
-	var inputbushoId = $('#js-settei-bushoid').val();
+
 	var requestQuery = {
 			NewbushoName : inputbushoname,
-			bushoId : inputbushoId
+			q : parameter
 	} ;
 	console.log(requestQuery);
 
@@ -27,6 +33,8 @@ $.ajax({
 	data : requestQuery,
 	success : function (json) {
 		console.log('返却地',json);
+
+
 	},
 	error:function(XMLHttpRequest, textStatus, errorThrown){
 		// サーバーとの通信に失敗した時の処理

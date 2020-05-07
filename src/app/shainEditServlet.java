@@ -14,20 +14,34 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/api/editbushokanri")
-public class BushoeditServlet extends HttpServlet {
+@WebServlet("/api/editshainindex")
+public class shainEditServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// アクセス元のHTMLでｑに設定された値を取得して、String型の変数idに代入
-		String bushoId = request.getParameter("q");
-		String NewbushoName = request.getParameter("NewbushoName");
+		String shainId = request.getParameter("q");
+		String shainName = request.getParameter("shainName");
+		String shainOld = request.getParameter("shainOld");
+		String shainSex = request.getParameter("shainSex");
+		String shasinId = request.getParameter("shasinId");
+		String Jyusho = request.getParameter("Jyusho");
+		String bushoId = request.getParameter("bushoId");
+
 
 		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String user = "app";
 		String pass = "app";
 
-		String sql = " update " + " TR_BUSHO " + " set " + " BUSHO_NAME = '" + NewbushoName + "' " + " where " + " BUSHO_ID = '"+ bushoId + "' ";
+		String sql = "update TR_SYAIN " +
+				"set SYAIN_NAME = '" + shainName + "'," +
+				"NENREI =  '" + shainOld + "' ," +
+				"SEIBETU = '" + shainSex + "'," +
+				"SYASIN_ID= '" + shasinId + "'," +
+				"JYUSHO = '" + Jyusho + "'," +
+				"BUSHO_ID = ' " + bushoId + "'" +
+				"where SYAIN_NO = '" + shainId + "'";
+
 
 		System.out.println(sql);
 

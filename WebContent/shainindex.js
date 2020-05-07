@@ -24,15 +24,25 @@ function executeAjax () {
 				var record = '<tr>'
 					+ '<td>' + element.shainId + '</td>'
 					+ '<td>' + element.shainName + '</td>'
-					+ '<td>' + '<button class=edit name= "edit" >編集</button>' + '</td>'
+					+ '<td>' + '<button class=edit name= "edit" value="'+ element.shainId +'">編集</button>' + '</td>'
 					+ '<td>' + '<button class=delete type="submit" name="delete" value="'+ element.shainId +'" button onclick="func1()" >削除</button>' + '</td>'
 					+ '</tr>';
 
 				$('#table_data').append(record)
 			}
 			$('.delete').click(deleteshain);
+
+			$('.edit').click(editshain);
 		}
 	});
+}
+
+var editshain = function(){
+
+	var shainId = document.activeElement.value;
+	location.href='./shainedit.html?shainId=' +shainId;
+	console.log(shainId);
+
 }
 
 function func1() {
